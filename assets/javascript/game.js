@@ -6,13 +6,14 @@ var spaceWord = [];
 var alphabet =["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 var chances = 10;
 var wins = 0;
+var losses = 0;
 var userInput;
 
 var winsElem = document.getElementById("wins");
 var wordElem = document.getElementById("word");
 var numberElem = document.getElementById("numberguess")
 var letterElem = document.getElementById("lettersguess")
-
+var lossesElem = document.getElementById("losses");
 
 
 //reset function
@@ -51,6 +52,7 @@ wordElem.textContent = spaceWord.join(" ")
 letterElem.textContent = badGuess
 numberElem.textContent = chances
 winsElem.textContent = wins
+lossesElem.textContent = losses
 
 
  //functions
@@ -74,6 +76,14 @@ if(chosenWord.indexOf(userInput) === -1){
 		badGuess.push(userInput);
 		numberElem.textContent = chances
 		letterElem.textContent = badGuess
+
+		     // Chances run out
+        if(chances === 0) {
+       		losses ++;
+        	lossesElem.textContent = losses;
+        	reset();
+        }
+		
 	} 
 
 } else{
@@ -90,19 +100,16 @@ if(chosenWord.indexOf(userInput) === -1){
         	winsElem.textContent = wins;
         	reset();
         	console.log(chances);
-
-        	
+	
         }
+       
     }
-// Chances running out
 
-if(chances === 0) {
-	numberElem.textContent = chances;
-	reset();
+	
 }
 }
 }
-}
+
 
 
 
